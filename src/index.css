@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .hover-info {
+        --tooltip-color: #3f3f3f;
+    }
+
+    .hover-info::after {
+        opacity: 0;
+        content: "";
+        font-size: small;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 20;
+        transform: translateX(-25%) translateY(-100%);
+        background-color: var(--tooltip-color);
+        border-radius: 0.375rem;
+        padding-inline: 0.25rem;
+        transition: all 0.2s;
+        pointer-events: none;
+    }
+
+    .hover-info::before {
+        opacity: 0;
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 30;
+        transform: translateX(50%) translateY(-30%);
+        border-width: 5px;
+        border-style: solid;
+        border-color: var(--tooltip-color) transparent transparent transparent;
+        transition: all 0.2s;
+        pointer-events: none;
+    }
+
+    .hover-info:hover::after,
+    .hover-info:hover::before {
+        opacity: 1;
+    }
+
+    .hover-info:hover::after {
+        transform: translateX(-25%) translateY(-120%);
+    }
+
+    .hover-info:hover::before {
+        transform: translateX(50%) translateY(-50%);
+    }
+
+}
+
+@layer utilities {
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
+}
